@@ -3,7 +3,10 @@ package kr.co.tjoeun.apipractice_20200527;
 import androidx.databinding.DataBindingUtil;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+
+import org.json.JSONObject;
 
 import kr.co.tjoeun.apipractice_20200527.databinding.ActivityLoginBinding;
 import kr.co.tjoeun.apipractice_20200527.databinding.ActivityLoginBinding;
@@ -31,7 +34,14 @@ public class LoginActivity extends BaseActivity {
                 String email = binding.emailEdt.getText().toString();
                 String password = binding.pwEdt.getText().toString();
 
-                ServerUtil.postRequestLogin(mContext,email, password, null);
+                ServerUtil.postRequestLogin(mContext, email, password, new ServerUtil.JsonResponseHandler() {
+                    @Override
+                    public void onResponse(JSONObject json) {
+
+                        Log.d("JSON 확인", json.toString());
+
+                    }
+                });
 
             }
         });
