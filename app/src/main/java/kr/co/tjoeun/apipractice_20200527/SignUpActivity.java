@@ -121,5 +121,11 @@ public class SignUpActivity extends BaseActivity {
 
         boolean isAllPasswordOk = checkPasswords();
 
+        boolean isIdDuplCheckOk = true;
+
+        binding.signUpBtn.setEnabled(isAllPasswordOk && isIdDuplCheckOk);
+
+
+
     }
 }
