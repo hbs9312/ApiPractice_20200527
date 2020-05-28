@@ -61,7 +61,13 @@ public class LoginActivity extends BaseActivity {
 
                                 JSONObject data = json.getJSONObject("data");
                                 String token = data.getString("token");
+
                                 ContextUtil.setLoginUserToken(mContext,token);
+
+                                Intent myIntent = new Intent(mContext, MainActivity.class);
+                                startActivity(myIntent);
+
+                                finish();
                             }
                             else {
                                 Log.d("분석결과", "로그인 실패..");
