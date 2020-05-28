@@ -51,7 +51,7 @@ public class SignUpActivity extends BaseActivity {
                 if(inputTxt.length() == 0) {
                     binding.checkPasswordResultTxt.setText("비밀번호 확인을 입력해주세요.");
                 }
-                else if (!inputTxt.equals(binding.inputPasswordEdt.getText().toString())){
+                else if (inputTxt.equals(binding.inputPasswordEdt.getText().toString())){
                         binding.checkPasswordResultTxt.setText("비밀번호 재입력이  확인 되었습니다.");
                 }
                 else {
