@@ -2,6 +2,7 @@ package kr.co.tjoeun.apipractice_20200527;
 
 import androidx.databinding.DataBindingUtil;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,6 +14,7 @@ import org.json.JSONObject;
 
 import kr.co.tjoeun.apipractice_20200527.databinding.ActivityLoginBinding;
 import kr.co.tjoeun.apipractice_20200527.databinding.ActivityLoginBinding;
+import kr.co.tjoeun.apipractice_20200527.utils.ContextUtil;
 import kr.co.tjoeun.apipractice_20200527.utils.ServerUtil;
 
 public class LoginActivity extends BaseActivity {
@@ -59,6 +61,7 @@ public class LoginActivity extends BaseActivity {
 
                                 JSONObject data = json.getJSONObject("data");
                                 String token = data.getString("token");
+                                ContextUtil.setLoginUserToken(mContext,token);
                             }
                             else {
                                 Log.d("분석결과", "로그인 실패..");
