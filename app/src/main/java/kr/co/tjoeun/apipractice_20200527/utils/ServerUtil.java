@@ -132,6 +132,57 @@ public class ServerUtil {
 
     }
 
+    public static void getRequestMainInfo (Context context, final JsonResponseHandler handler) {
+
+        OkHttpClient client = new OkHttpClient();
+
+//        GET - 파라미터들이 모두 주소에 적힌다.
+//        요청할 때 파라미터를 주소에 모두 적어줘야한다.
+
+        HttpUrl.Builder urlBuildedr =  HttpUrl.parse(BASE_URL + "/main_info").newBuilder();
+//        urlBuildedr.addQueryParameter("type", checkType);
+//        urlBuildedr.addQueryParameter("value", input);
+
+        String completeUrl = urlBuildedr.build().toString();
+
+        Log.d("완성된 Url", completeUrl);
+
+        Request request = new Request.Builder()
+                .url(completeUrl)
+                .header("X-Http-Token", ContextUtil.getLoginUserToken(context))
+                .get()
+                .build();
+
+
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                e.printStackTrace();
+            }
+
+            @Override
+            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+
+                String body = response.body().string();
+
+                try {
+                    JSONObject json = new JSONObject(body);
+
+                    if(handler != null) {
+                        handler.onResponse(json);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                Log.d("body", body);
+
+            }
+        });
+
+    }
+
+
     public static void putRequestSignUp(Context context, String email, String pw, String nickName, final JsonResponseHandler handler) {
 
 //        안드로이드 앱이 클라이언트로써의 역할을 하도록 도와주는 객체.
@@ -185,7 +236,9 @@ public class ServerUtil {
             }
         });
 
-
     }
+
+
+
 
 }
