@@ -22,6 +22,7 @@ public class SignUpActivity extends BaseActivity {
     ActivitySignUpBinding binding;
 
     boolean idCheckOk = false;
+    boolean nickNameCheck = false;
 //    응용문제.
 //    비번을 타이핑할 때마다 길이 검사
 //     => 0글자 : 비밀번호를 입력해주세요.
@@ -49,6 +50,25 @@ public class SignUpActivity extends BaseActivity {
 //         => 성공일 경우 "사용해도 좋습니다." 토스트
 //         => 실패일 경우 "중복된 닉네입입니다." 토스트
 
+        binding.nickNameEdt.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                nickNameCheck = false;
+                binding.nickNameResultTxt.setText("중복 검사를 해주세요.");
+                checkSignUpEnalbe();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
         binding.nickNameIsDuplBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -69,6 +89,8 @@ public class SignUpActivity extends BaseActivity {
                                     @Override
                                     public void run() {
                                         binding.nickNameResultTxt.setText("사용해도 좋은 닉네임입니다.");
+                                        nickNameCheck = true;
+
 
                                     }
                                 });
@@ -82,6 +104,14 @@ public class SignUpActivity extends BaseActivity {
                                     }
                                 });
                             }
+
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    checkSignUpEnalbe();
+                                }
+                            });
+
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -262,7 +292,7 @@ public class SignUpActivity extends BaseActivity {
         boolean isAllPasswordOk = checkPasswords();
 
 
-        binding.signUpBtn.setEnabled(isAllPasswordOk && idCheckOk);
+        binding.signUpBtn.setEnabled(isAllPasswordOk && idCheckOk && nickNameCheck);
 
 
 
