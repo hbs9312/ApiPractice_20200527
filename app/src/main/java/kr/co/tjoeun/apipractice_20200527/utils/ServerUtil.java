@@ -28,7 +28,7 @@ public class ServerUtil {
 
     public static void postRequestLogin(Context context, String email, String pw, final JsonResponseHandler handler) {
 
-//        안드로이드 앱이 클라이언트로써의 역할을 하돌고 도와주는 객체.
+//        안드로이드 앱이 클라이언트로써의 역할을 하도록 도와주는 객체.
         OkHttpClient client = new OkHttpClient();
 
 //        POST 메소드는 FormBody에 필요한 데이터를 첨부.
