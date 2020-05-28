@@ -45,6 +45,57 @@ public class SignUpActivity extends BaseActivity {
     @Override
     public void setupEvent() {
 
+//        닉네임 중복확인 버튼 => 서버에 중복확인 요청 (문서 참조)
+//         => 성공일 경우 "사용해도 좋습니다." 토스트
+//         => 실패일 경우 "중복된 닉네입입니다." 토스트
+
+        binding.nickNameIsDuplBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String inputNickName = binding.nickNameEdt.getText().toString();
+
+                ServerUtil.getRequestDuplicatedCheck(mContext, inputNickName, "NICKNAME", new ServerUtil.JsonResponseHandler() {
+                    @Override
+                    public void onResponse(JSONObject json) {
+
+                        Log.d("로그확인", json.toString());
+
+                        try {
+                            int code = json.getInt("code");
+
+                            if (code == 200) {
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        binding.nickNameResultTxt.setText("사용해도 좋은 닉네임입니다.");
+
+                                    }
+                                });
+                            }
+                            else {
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        binding.nickNameResultTxt.setText("사용할 수 없는 닉네입입니다.");
+
+                                    }
+                                });
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+
+                    }
+                });
+
+
+
+            }
+        });
+
         binding.emailEdt.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
