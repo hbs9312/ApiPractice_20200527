@@ -45,6 +45,31 @@ public class SignUpActivity extends BaseActivity {
     @Override
     public void setupEvent() {
 
+        binding.emailEdt.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+//                이메일을 변경하면 무조건 중복검사를 실패로 변경 => 재검사 요구.
+                idCheckOk = false;
+
+//                버튼 비활성화 체크
+                checkSignUpEnalbe();
+
+                binding.idCheckResultTxt.setText("아이디 중복검사를 해주세요.");
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
         binding.idCheckBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -78,7 +103,6 @@ public class SignUpActivity extends BaseActivity {
                                     public void run() {
                                         Toast.makeText(mContext, "중복검사에 통과하지 못했습니다.", Toast.LENGTH_SHORT).show();
                                         binding.idCheckResultTxt.setText("중복검사에 통과하지 못했습니다.");
-                                        idCheckOk = false;
                                     }
                                 });
 

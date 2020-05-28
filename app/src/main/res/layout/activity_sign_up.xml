@@ -40,7 +40,7 @@
             android:id="@+id/idCheckResultTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="중복검사를 해주세요."
+            android:text="아이디 중복검사를 해주세요."
             android:textColor="#A0A0A0" />
 
         <TextView
