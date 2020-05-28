@@ -20,6 +20,7 @@
             android:layout_marginTop="5dp" >
 
             <EditText
+                android:id="@+id/idEdt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
@@ -27,6 +28,7 @@
                 android:inputType="textEmailAddress" />
 
             <Button
+                android:id="@+id/emailIsDuplBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="중복확인"
@@ -47,6 +49,7 @@
             android:layout_marginTop="20dp"/>
 
         <EditText
+            android:id="@+id/inputPasswordEdt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="비밀번호 입력 (8자 이상)"
@@ -54,6 +57,7 @@
             android:layout_marginTop="5dp" />
 
         <TextView
+            android:id="@+id/passwordResultTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="비밀번호를 입력해주세요." />
@@ -65,17 +69,21 @@
             android:layout_marginTop="20dp" />
 
         <EditText
+            android:id="@+id/checkPasswordEdt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:inputType="textPassword"
             android:hint="비밀번호를 다시 입력해주세요"
             android:layout_marginTop="5dp" />
 
         <TextView
+            android:id="@+id/checkPasswordResultTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="비밀번호 확인을 입력해주세요." />
 
         <TextView
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="닉네임"
@@ -87,6 +95,7 @@
             android:layout_marginTop="5dp" >
 
             <EditText
+                android:id="@+id/nickNameEdt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
@@ -94,6 +103,7 @@
                 android:inputType="textEmailAddress" />
 
             <Button
+                android:id="@+id/nickNameIsDuplBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="중복확인"
