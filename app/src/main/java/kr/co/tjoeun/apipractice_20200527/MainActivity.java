@@ -50,6 +50,8 @@ public class MainActivity extends BaseActivity {
     public void setupEvent() {
 
 
+
+
         binding.logoutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
