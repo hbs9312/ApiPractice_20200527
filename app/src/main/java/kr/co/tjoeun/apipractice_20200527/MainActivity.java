@@ -10,6 +10,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import kr.co.tjoeun.apipractice_20200527.databinding.ActivityMainBinding;
+import kr.co.tjoeun.apipractice_20200527.datas.User;
 import kr.co.tjoeun.apipractice_20200527.utils.ServerUtil;
 
 public class MainActivity extends BaseActivity {
@@ -43,12 +44,14 @@ public class MainActivity extends BaseActivity {
                         JSONObject data = json.getJSONObject("data");
 
                         JSONObject user = data.getJSONObject("user");
-                        final String userNickName= user.getString("nick_name");
+
+                        final User me = User.getUserFromJson(user);
 
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                binding.nickName.setText(userNickName);
+                                binding.nickName.setText(me.getNickName());
+                                binding.emailTxt.setText(me.getEmail());
                             }
                         });
 
