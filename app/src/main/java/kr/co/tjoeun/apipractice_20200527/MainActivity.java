@@ -37,6 +37,8 @@ public class MainActivity extends BaseActivity {
 
     TopicReplyAdapter tra;
 
+    Topic thisWeekTopic;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +51,15 @@ public class MainActivity extends BaseActivity {
     @Override
     public void setupEvent() {
 
-
+        binding.postReplyBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent myIntent = new Intent(mContext, EditReplyActivity.class);
+//                댓글을 달 주제를 넘겨주자
+                myIntent.putExtra("topic", thisWeekTopic);
+                startActivity(myIntent);
+            }
+        });
 
 
         binding.logoutBtn.setOnClickListener(new View.OnClickListener() {
@@ -98,10 +108,12 @@ public class MainActivity extends BaseActivity {
                         JSONObject data = json.getJSONObject("data");
 
                         JSONObject user = data.getJSONObject("user");
+
                         final User me = User.getUserFromJson(user);
 
                         final JSONObject topic = data.getJSONObject("topic");
-                        final Topic thisWeekTopic = Topic.getTopicFromJson(topic);
+
+                        thisWeekTopic = Topic.getTopicFromJson(topic);
 
 //                        댓글목록도 파싱하자.
 
