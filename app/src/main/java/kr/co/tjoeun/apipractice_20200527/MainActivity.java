@@ -35,6 +35,8 @@ public class MainActivity extends BaseActivity {
 
     List<TopicReply> replyList = new ArrayList<>();
 
+    TopicReplyAdapter tra;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,6 +83,7 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void setValues() {
+
         ServerUtil.getRequestMainInfo(mContext, new ServerUtil.JsonResponseHandler() {
             @Override
             public void onResponse(JSONObject json) {
@@ -120,6 +123,9 @@ public class MainActivity extends BaseActivity {
 
                                 Glide.with(mContext).load(thisWeekTopic.getImageUrl()).into(binding.topicImg);
                                 binding.topicTxt.setText(thisWeekTopic.getTitle());
+
+                                tra.notifyDataSetChanged();
+
                             }
                         });
 
@@ -131,6 +137,11 @@ public class MainActivity extends BaseActivity {
 
             }
         });
+
+        tra = new TopicReplyAdapter(mContext, R.layout.topic_reply_list_item, replyList);
+        binding.replyListView.setAdapter(tra);
+
+
 
     }
 }
