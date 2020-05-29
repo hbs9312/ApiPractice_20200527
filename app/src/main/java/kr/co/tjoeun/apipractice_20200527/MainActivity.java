@@ -3,8 +3,10 @@ package kr.co.tjoeun.apipractice_20200527;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 import com.bumptech.glide.Glide;
 
@@ -14,6 +16,7 @@ import org.json.JSONObject;
 import kr.co.tjoeun.apipractice_20200527.databinding.ActivityMainBinding;
 import kr.co.tjoeun.apipractice_20200527.datas.Topic;
 import kr.co.tjoeun.apipractice_20200527.datas.User;
+import kr.co.tjoeun.apipractice_20200527.utils.ContextUtil;
 import kr.co.tjoeun.apipractice_20200527.utils.ServerUtil;
 
 public class MainActivity extends BaseActivity {
@@ -30,6 +33,20 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void setupEvent() {
+
+        binding.logoutBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                ContextUtil.setLoginUserToken(mContext, "");
+
+                Intent myIntent = new Intent(mContext, LoginActivity.class);
+                startActivity(myIntent);
+
+                finish();
+
+            }
+        });
 
     }
 
