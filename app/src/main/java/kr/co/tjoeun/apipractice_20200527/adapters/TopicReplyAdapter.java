@@ -45,11 +45,14 @@ public class TopicReplyAdapter extends ArrayAdapter<TopicReply> {
 
         TextView contentTxt = row.findViewById(R.id.contentTxt);
         TextView writerUserTtx = row.findViewById(R.id.writerUserTtx);
+        TextView sideTxt = row.findViewById(R.id.sideTxt);
 
         TopicReply data = mList.get(position);
 
         contentTxt.setText(data.getContent());
         writerUserTtx.setText(data.getWriter().getNickName());
+        sideTxt.setText(data.getSide());
+
 
 
         return row;

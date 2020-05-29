@@ -7,6 +7,8 @@
         android:orientation="vertical"
         android:layout_height="match_parent">
 
+
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -20,11 +22,22 @@
                 android:padding="5dp">
 
                 <TextView
+                    android:id="@+id/sideTxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:textSize="10sp"
+                    android:textColor="#FF0000"
+                    android:background="@drawable/red_border_box"
+                    android:text="찬성" />
+
+                <TextView
                     android:id="@+id/writerUserTtx"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="닉네임자리"
                     android:textColor="#000000"
+                    android:layout_marginLeft="5dp"
                     android:textStyle="bold" />
 
                 <ImageView
