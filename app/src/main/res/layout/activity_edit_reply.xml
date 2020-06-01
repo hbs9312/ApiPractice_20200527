@@ -31,17 +31,20 @@
             android:text="진영 선택" />
 
         <RadioGroup
+            android:id="@+id/sideRadioGroup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:orientation="horizontal">
 
             <RadioButton
+                android:id="@+id/agreeRadioBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="찬성" />
 
             <RadioButton
+                android:id="@+id/disagreeRadioBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="반대" />
@@ -55,6 +58,7 @@
             android:text="의견 내용" />
 
         <EditText
+            android:id="@+id/contentEdt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="top"
@@ -62,6 +66,7 @@
             android:minLines="5" />
 
         <Button
+            android:id="@+id/postBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="등록하기" />
