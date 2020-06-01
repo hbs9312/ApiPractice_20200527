@@ -64,6 +64,9 @@ public class TopicReplyAdapter extends ArrayAdapter<TopicReply> {
             sideTxt.setBackgroundResource(R.drawable.blue_border_box);
         }
 
+//        언제 댓글을 남겼는지 표시.
+
+
 
 
         return row;
