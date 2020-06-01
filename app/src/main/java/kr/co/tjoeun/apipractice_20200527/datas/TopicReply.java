@@ -1,11 +1,14 @@
 package kr.co.tjoeun.apipractice_20200527.datas;
 
+import android.util.Log;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.TimeZone;
 
 public class TopicReply {
 
@@ -39,9 +42,19 @@ public class TopicReply {
             String createdAtStr = jsonObject.getString("created_at");
 
 //            만들어져있는 createdAt 캘린더에 => 년/월/일/시 등 데이터 세팅. => setTime
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//            내 핸드폰의 시간과 Vs. UTC 시간의격차가 얼마인지 구해서 더해줘야함.
 
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             tr.createdAt.setTime(sdf.parse(createdAtStr));
+
+//            시차 : 9시간 =>: 작성시간 + 9
+//            시차 구하는 방법 검색. => Timezone
+            TimeZone myPhoneTimeZone = tr.createdAt.getTimeZone();
+//            해당 Timezone의 실제 시차 값. => 밀리세컨드를 시간으로 변경
+            int gmtOffset = myPhoneTimeZone.getRawOffset() / 60 / 60 / 1000;
+//            현재 구해낸 시간에 더해준다.
+            Log.d("시차확인", String.valueOf(gmtOffset));
+            tr.createdAt.add(Calendar.HOUR_OF_DAY, gmtOffset);
 
         } catch (JSONException e) {
             e.printStackTrace();
