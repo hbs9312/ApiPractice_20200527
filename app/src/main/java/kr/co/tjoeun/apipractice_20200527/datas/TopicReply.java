@@ -88,4 +88,8 @@ public class TopicReply {
     public User getWriter() {
         return writer;
     }
+
+    public Calendar getCreatedAt() {
+        return createdAt;
+    }
 }
