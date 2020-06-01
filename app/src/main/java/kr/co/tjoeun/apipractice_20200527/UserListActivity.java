@@ -5,8 +5,16 @@ import androidx.databinding.DataBindingUtil;
 
 import android.os.Binder;
 import android.os.Bundle;
+import android.util.Log;
+
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import kr.co.tjoeun.apipractice_20200527.databinding.ActivityUserListBinding;
+import kr.co.tjoeun.apipractice_20200527.datas.User;
+import kr.co.tjoeun.apipractice_20200527.utils.ServerUtil;
 
 public class UserListActivity extends BaseActivity {
 
@@ -14,6 +22,8 @@ public class UserListActivity extends BaseActivity {
 //    닉네임 (이메일주소) => 이 양식으로 표현.
 
     ActivityUserListBinding binding;
+
+    List<User> users = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +40,23 @@ public class UserListActivity extends BaseActivity {
 
     @Override
     public void setValues() {
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getUsersFromServer();
+    }
+
+    void getUsersFromServer() {
+
+        ServerUtil.getRequestUserList(mContext, new ServerUtil.JsonResponseHandler() {
+            @Override
+            public void onResponse(JSONObject json) {
+                Log.d("사용자목록확인", json.toString());
+            }
+        });
 
     }
 }

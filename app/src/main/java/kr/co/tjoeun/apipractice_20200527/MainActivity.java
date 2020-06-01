@@ -51,10 +51,18 @@ public class MainActivity extends BaseActivity {
     @Override
     public void setupEvent() {
 
+        binding.goToUserListBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent myIntent = new Intent(mContext,UserListActivity.class);
+                startActivity(myIntent);
+            }
+        });
+
         binding.postReplyBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent myIntent = new Intent(mContext, EditReplyActivity.class);
+                Intent myIntent = new   Intent(mContext, EditReplyActivity.class);
 //                댓글을 달 주제를 넘겨주자
                 myIntent.putExtra("topic", thisWeekTopic);
                 startActivity(myIntent);

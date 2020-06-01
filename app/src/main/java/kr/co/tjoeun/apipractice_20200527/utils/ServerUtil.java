@@ -62,6 +62,7 @@ public class ServerUtil {
                 Log.d("서버연결성공", body);
 
 //                String body를 JSONObject 로 변환.
+//                String body를 JSONObject 로 변환.
 
                 try {
                     JSONObject jsonObject = new JSONObject(body);
@@ -193,6 +194,53 @@ public class ServerUtil {
         HttpUrl.Builder urlBuildedr =  HttpUrl.parse(BASE_URL + "/main_info").newBuilder();
         urlBuildedr.addQueryParameter("device_token", "임시기기값");
         urlBuildedr.addQueryParameter("os", "etc");
+
+        String completeUrl = urlBuildedr.build().toString();
+
+        Log.d("완성된 Url", completeUrl);
+
+        Request request = new Request.Builder()
+                .url(completeUrl)
+                .header("X-Http-Token", ContextUtil.getLoginUserToken(context))
+                .get()
+                .build();
+
+
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                e.printStackTrace();
+            }
+
+            @Override
+            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+
+                String body = response.body().string();
+
+                try {
+                    JSONObject json = new JSONObject(body);
+
+                    if(handler != null) {
+                        handler.onResponse(json);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                Log.d("body", body);
+
+            }
+        });
+
+    }
+
+    public static void getRequestUserList(Context context, final JsonResponseHandler handler) {
+
+        OkHttpClient client = new OkHttpClient();
+
+        HttpUrl.Builder urlBuildedr =  HttpUrl.parse(BASE_URL + "/user").newBuilder();
+//        urlBuildedr.addQueryParameter("type", checkType);
+//        urlBuildedr.addQueryParameter("value", input);
 
         String completeUrl = urlBuildedr.build().toString();
 
