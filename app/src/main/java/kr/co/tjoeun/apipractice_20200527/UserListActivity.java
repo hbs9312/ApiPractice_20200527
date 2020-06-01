@@ -78,7 +78,13 @@ public class UserListActivity extends BaseActivity {
 
 //                      notifyDataset 필요하다.
 
-                    mAdapter.notifyDataSetChanged();
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+
+                            mAdapter.notifyDataSetChanged();
+                        }
+                    });
 
                 } catch (JSONException e) {
                     e.printStackTrace();

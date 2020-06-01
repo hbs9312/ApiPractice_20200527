@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -39,6 +40,14 @@ public class UserAdapter extends ArrayAdapter<User> {
         if(row == null){
             row = inf.inflate(R.layout.user_list_item, null);
         }
+
+        TextView nickNameTxt = row.findViewById(R.id.nickNameTxt);
+        TextView emailTxt = row.findViewById(R.id.emailTxt);
+
+        User data = mList.get(position);
+
+        nickNameTxt.setText(data.getNickName());
+        emailTxt.setText(String.format("%s",data.getEmail()));
 
         return row;
     }
