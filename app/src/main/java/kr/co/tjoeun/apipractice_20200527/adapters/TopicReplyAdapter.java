@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import java.nio.charset.CodingErrorAction;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import kr.co.tjoeun.apipractice_20200527.R;
@@ -47,6 +48,7 @@ public class TopicReplyAdapter extends ArrayAdapter<TopicReply> {
         TextView contentTxt = row.findViewById(R.id.contentTxt);
         TextView writerUserTtx = row.findViewById(R.id.writerUserTtx);
         TextView sideTxt = row.findViewById(R.id.sideTxt);
+        TextView createdAtTxt = row.findViewById(R.id.createdAtTxt);
 
         TopicReply data = mList.get(position);
 
@@ -64,10 +66,9 @@ public class TopicReplyAdapter extends ArrayAdapter<TopicReply> {
             sideTxt.setBackgroundResource(R.drawable.blue_border_box);
         }
 
-//        언제 댓글을 남겼는지 표시.
-
-
-
+//        언제 댓글을 남겼는지 표시. => 의견에 있는 기능 활용.
+//        댓글 남긴 시간 파싱 => M월 d일 H시 m분
+        createdAtTxt.setText(data.getFormattedTimeAgo());
 
         return row;
     }
