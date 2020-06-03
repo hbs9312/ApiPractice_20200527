@@ -18,7 +18,7 @@ public class MyFCMService extends FirebaseMessagingService {
     @Override
     public void onMessageReceived(@NonNull RemoteMessage remoteMessage) {
         super.onMessageReceived(remoteMessage);
-
+//        화면이 켜져있을 때 알림이 오면 실행되는 코드
         Log.d("푸시알림수신", "이벤트발생");
     }
 }
